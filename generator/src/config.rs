@@ -19,6 +19,7 @@ pub struct TakeSnapshotParams {
     pub save_path: Option<String>,
     pub themes_folder: String,
     pub fonts_folder: String,
+    pub syntaxes_folder: String,
     pub theme: String,
     pub bg_theme: String,
     pub bg_color: Option<String>,

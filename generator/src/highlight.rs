@@ -70,10 +70,16 @@ impl Highlight {
 
     pub fn parse(
         &self,
+        syntaxes_folder: &str,
         theme_folder: &str,
         theme: &str,
     ) -> Result<Vec<(&str, Attrs)>, RenderError> {
-        let syntax_set = two_face::syntax::extra_newlines();
+        let mut syntax_set = SyntaxSet::load_defaults_newlines();
+        let mut builder = syntax_set.into_builder();
+        builder.add_from_folder(&"./syntaxes", true).unwrap();
+        builder.add_from_folder(&syntaxes_folder, true).unwrap();
+
+        syntax_set = builder.build();
         let theme_set = ThemeSet::load_from_folder(theme_folder)
             .map_err(|_| RenderError::HighlightThemeLoadFailed)?;
         let syntax = &self.guess_syntax(&syntax_set)?;

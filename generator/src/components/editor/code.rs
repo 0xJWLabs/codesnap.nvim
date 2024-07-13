@@ -42,7 +42,7 @@ impl Component for Code {
             params.code_file_path.clone(),
             params.extension.clone(),
         );
-        let highlight_result = highlight.parse(&params.themes_folder, &params.theme)?;
+        let highlight_result = highlight.parse(&params.syntaxes_folder, &params.themes_folder, &params.theme)?;
 
         FontRenderer::new(
             self.font_size,
