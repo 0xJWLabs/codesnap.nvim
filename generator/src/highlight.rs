@@ -76,7 +76,6 @@ impl Highlight {
     ) -> Result<Vec<(&str, Attrs)>, RenderError> {
         let mut syntax_set = SyntaxSet::load_defaults_newlines();
         let mut builder = syntax_set.into_builder();
-        builder.add_from_folder(&"./syntaxes", true).unwrap();
         builder.add_from_folder(&syntaxes_folder, true).unwrap();
 
         syntax_set = builder.build();
