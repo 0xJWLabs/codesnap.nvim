@@ -4,7 +4,6 @@
 name: Luau
 file_extensions:
   - luau
-  - lua
 scope: source.luau
 contexts:
   main:
@@ -25,6 +24,7 @@ contexts:
     - include: table
     - include: type_cast
     - include: type_annotation
+    - include: attribute
   comment:
     - match: '--\[(=*)\['
       push:
@@ -53,6 +53,12 @@ contexts:
         - meta_scope: comment.line.double-dash.luau
         - match: \n
           pop: true
+  attribute:
+    - match: '(@)([a-zA-Z_][a-zA-Z0-9_]*)'
+      scope: meta.attribute.luau
+      captures:
+        1: keyword.operator.attribute.luau
+        2: storage.type.attribute.luau
   doc_comment_tags:
     - match: '@\w+'
       scope: storage.type.class.luadoc.luau
@@ -178,6 +184,7 @@ contexts:
         - match: '(?=\s*do\b|\s*[=;]|\s*$)'
           pop: true
         - include: comment
+        - include: attribute
         - match: (:)
           captures:
             1: keyword.operator.type.luau
