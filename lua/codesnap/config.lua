@@ -1,3 +1,4 @@
+-- Config 
 local visual_utils = require("codesnap.utils.visual")
 local path_utils = require("codesnap.utils.path")
 local string_utils = require("codesnap.utils.string")
